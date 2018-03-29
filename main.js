@@ -1,6 +1,6 @@
 let canv = null;
 let ctx = null;
-let game_signal = null;
+let gameSignal = null;
 let colors = {
   lime: "#a9dd76",
   pink: "#f893c4",
@@ -10,6 +10,8 @@ let colors = {
   yellow: "#ece76c",
   blue: "#78c3ef"
 }
+let score = 0;
+let state = "PLAYING";
 
 
 function init()
@@ -18,13 +20,27 @@ function init()
   ctx = canv.getContext("2d");
   ctx.font = "30px Lucida Console";
   ctx.textAlign = "center";
+
+  document.addEventListener("keydown", keyPush);
   
-  game_signal = setInterval(update, 1000/15);
+  gameSignal = setInterval(update, 1000/15);
 } // init()
+
+function reset()
+{
+  score = 0;
+} // reset
 
 function update()
 {
+  if(STATE === "PLAYING")
+  {
 
+  }
+  else if(STATE === "LOSS")
+  {
+
+  }
 
   draw();
 } // update()
@@ -47,3 +63,8 @@ function draw()
   ctx.fillStyle = colors.blue;
   ctx.fillText("Hello World", canv.width / 2, 50);
 } // draw()
+
+function keyPush(evt)
+{
+
+} // keyPush()
