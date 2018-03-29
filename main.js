@@ -1,3 +1,5 @@
+// main.js
+
 let canv = null;
 let ctx = null;
 let gameSignal = null;
@@ -8,11 +10,14 @@ let colors = {
   orange: "#eab179",
   teal: "#7cdac1",
   yellow: "#ece76c",
-  blue: "#78c3ef"
+  blue: "#78c3ef",
+  gray: "#efefef"
 }
 let score = 0;
 let state = "PLAYING";
 
+let sg = null;
+let tg = null;
 
 function init()
 {
@@ -21,25 +26,43 @@ function init()
   ctx.font = "30px Lucida Console";
   ctx.textAlign = "center";
 
+  sg = new SnakeGame(10, 18, 20);
+  tg = new TetrisGame(10, 18, 20)
+
   document.addEventListener("keydown", keyPush);
   
-  gameSignal = setInterval(update, 1000/15);
+  gameSignal = setInterval(update, 1000/8);
 } // init()
 
 function reset()
 {
   score = 0;
+  sg.reset();
+  tg.reset();
+  state = "PLAYING";
 } // reset
 
 function update()
 {
-  if(STATE === "PLAYING")
+  let scoreChange = 0;
+
+  if(state === "PLAYING")
+  {
+    sg.update();
+    scoreChange += tg.update();
+  }
+  else if(state === "LOSS")
   {
 
   }
-  else if(STATE === "LOSS")
-  {
 
+  if(scoreChange < 0)
+  {
+    state = "LOSS";
+  }
+  else
+  {
+    score += scoreChange;
   }
 
   draw();
@@ -47,24 +70,47 @@ function update()
 
 function draw()
 {
+  let sgOffset = {x: 20, y: 100};
+  let tgOffset = {x: 260, y: 100};
+
+  ctx.clearRect(0, 0, canv.width, canv.height);
+
+  if(state === "LOSS")
+    ctx.globalAlpha = 0.5;
+  else
+    ctx.globalAlpha = 1;
+
   // draw Bg
   ctx.fillStyle = colors.lime;
-  ctx.fillRect(0, 0, 440, 440);
+  ctx.fillRect(0, 0, canv.width, canv.height);
 
   // draw SnakeGame
-  ctx.fillStyle = colors.magenta;
-  ctx.fillRect(0, 80, 200, 360);
+  ctx.save();
+  ctx.translate(sgOffset.x, sgOffset.y);
+  sg.draw(ctx);
+  ctx.restore();
 
   // draw TetrisGame
-  ctx.fillStyle = colors.pink;
-  ctx.fillRect(240, 80, 200, 360);
+  ctx.save();
+  ctx.translate(tgOffset.x, tgOffset.y);
+  tg.draw(ctx);  
+  ctx.restore();
 
   // draw Score
-  ctx.fillStyle = colors.blue;
-  ctx.fillText("Hello World", canv.width / 2, 50);
+  ctx.fillStyle = "black";
+  ctx.fillText("Score: " + score, canv.width / 2, 50);
 } // draw()
 
 function keyPush(evt)
 {
-
+  evt.preventDefault();
+  if(state === "LOSS")
+  {
+    reset();
+  }
+  else
+  {
+    sg.handleInput(evt);
+    tg.handleInput(evt);
+  }
 } // keyPush()
