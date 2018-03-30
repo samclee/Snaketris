@@ -3,16 +3,7 @@
 let canv = null;
 let ctx = null;
 let gameSignal = null;
-let colors = {
-  lime: "#a9dd76",
-  pink: "#f893c4",
-  magenta: "#d388ec",
-  orange: "#eab179",
-  teal: "#7cdac1",
-  yellow: "#ece76c",
-  blue: "#78c3ef",
-  gray: "#efefef"
-}
+
 let score = 0;
 let state = "PLAYING";
 
@@ -31,7 +22,8 @@ function init()
 
   document.addEventListener("keydown", keyPush);
   
-  gameSignal = setInterval(update, 1000/8);
+  gameSignal = setInterval(update, 1000/5);
+  
 } // init()
 
 function reset()
@@ -48,7 +40,7 @@ function update()
 
   if(state === "PLAYING")
   {
-    sg.update();
+    scoreChange += sg.update();
     scoreChange += tg.update();
   }
   else if(state === "LOSS")
@@ -81,7 +73,7 @@ function draw()
     ctx.globalAlpha = 1;
 
   // draw Bg
-  ctx.fillStyle = colors.lime;
+  ctx.fillStyle = colors.indigo;
   ctx.fillRect(0, 0, canv.width, canv.height);
 
   // draw SnakeGame
