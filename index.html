@@ -3,12 +3,32 @@
 <head>
   <title>Snaketris</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 <body onload="init()">
-  <canvas id="game" width="480" height="480">
-    Hopefully you don't see this.
-  </canvas>
+  <div id="top">Snaketris</div>
 
+  <div class="boxes">
+    <div class="box left">
+      <p>Use &larr;, &uarr;, &rarr;, &darr;, to move.</p>
+      
+      <p>Food is 100 pts</p>
+    </div>
+
+    <div class="center">
+    <canvas id="game" width="480" height="480">
+      Hopefully you don't see this.
+    </canvas>
+    </div>
+
+    <div class="box right">
+      <p>Use &larr;, &rarr; to move.</p>
+      <p>Use &uarr;, to &#8635;.</p>
+      <p>Use &darr;, to &#8634;.</p>
+      <p>A line is 10 pts</p>
+    </div>
+  </div>
+  
   <script src="./ReferenceData.js"></script>
   <script src="./main.js"></script>
   <script src="./SnakeGame.js"></script>

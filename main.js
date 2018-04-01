@@ -69,12 +69,6 @@ function draw()
 
   if(state === "LOSS")
     ctx.globalAlpha = 0.5;
-  else
-    ctx.globalAlpha = 1;
-
-  // draw Bg
-  ctx.fillStyle = colors.indigo;
-  ctx.fillRect(0, 0, canv.width, canv.height);
 
   // draw SnakeGame
   ctx.save();
@@ -89,6 +83,7 @@ function draw()
   ctx.restore();
 
   // draw Score
+  ctx.globalAlpha = 1;
   ctx.fillStyle = "black";
   ctx.fillText("Score: " + score, canv.width / 2, 50);
 } // draw()

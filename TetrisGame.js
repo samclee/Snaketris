@@ -205,7 +205,9 @@ TetrisGame.prototype.handleInput = function(evt)
   }
   else if(btn === "ArrowUp" || btn === "w")
   {
-    let testRot = (this.pieceRot+1) % pieceStructures[this.pieceType].length;
+    let testRot = (this.pieceRot-1) % pieceStructures[this.pieceType].length;
+    if(testRot < 0)
+      testRot += pieceStructures[this.pieceType].length;
     
     if(this.canPieceMove(this.pieceX, this.pieceY, testRot))
     {
@@ -222,9 +224,7 @@ TetrisGame.prototype.handleInput = function(evt)
   }
   else if(btn === "ArrowDown" || btn === "s")
   {
-    let testRot = (this.pieceRot-1) % pieceStructures[this.pieceType].length;
-    if(testRot < 0)
-      testRot += pieceStructures[this.pieceType].length;
+    let testRot = (this.pieceRot+1) % pieceStructures[this.pieceType].length;
     
     if(this.canPieceMove(this.pieceX, this.pieceY, testRot))
     {

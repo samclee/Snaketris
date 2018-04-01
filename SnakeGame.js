@@ -81,7 +81,7 @@ SnakeGame.prototype.draw = function(ctx)
   }
 
   // draw snake
-  ctx.fillStyle = colors.magenta;
+  ctx.fillStyle = colors.lime;
   for(var i=0; i<this.player.segs.length; i++)
   {
     var cur_seg = this.player.segs[i];

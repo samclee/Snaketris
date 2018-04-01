@@ -1,8 +1,8 @@
 let colors = {
-  lime: "#a9dd76",
+  lime: "#00FF7F",
   pink: "#f893c4",
   magenta: "#d388ec",
-  orange: "#eab179",
+  orange: "##FFA500",
   teal: "#7cdac1",
   yellow: "#ece76c",
   blue: "#78c3ef",
@@ -12,16 +12,16 @@ let colors = {
 }
 
 let colormap = {
-  i: "#a9dd76",
+  i: "#00FF7F",
   j: "#f893c4",
   l: "#d388ec",
-  o: "#eab179",
+  o: "#FFA500",
   s: "#7cdac1",
   t: "#ece76c",
   z: "#78c3ef",
   b: "#000000"
 }
-colormap[' '] = "#efefef"
+colormap[' '] = "#000000"
 
 let pieceStructures = [
   [
@@ -54,9 +54,9 @@ let pieceStructures = [
       [' ', ' ', ' ', ' '],
     ],
     [
+      [' ', 'j', 'j', ' '],
       [' ', 'j', ' ', ' '],
       [' ', 'j', ' ', ' '],
-      ['j', 'j', ' ', ' '],
       [' ', ' ', ' ', ' '],
     ],
     [
@@ -66,9 +66,9 @@ let pieceStructures = [
       [' ', ' ', ' ', ' '],
     ],
     [
-      [' ', 'j', 'j', ' '],
       [' ', 'j', ' ', ' '],
       [' ', 'j', ' ', ' '],
+      ['j', 'j', ' ', ' '],
       [' ', ' ', ' ', ' '],
     ],
   ],

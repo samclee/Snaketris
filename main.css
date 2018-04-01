@@ -1,0 +1,42 @@
+body {
+  font-family: "Lucida Console";
+}
+
+#top {
+  font-size: 6em;
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+}
+
+.boxes {
+  display: table;
+  width: 100%;
+  height: 100%;
+  font-size: 2em;
+}
+
+.box {
+  display: table-cell;
+  text-align: left;
+  vertical-align: top;
+  border-style: solid;
+  border-width: 3px;
+  width: 30%;
+  padding: 0.5em 1em;
+}
+
+.left {
+  background-color: LightPink;
+}
+
+.right {
+  background-color: SpringGreen;
+}
+
+.center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  background-color: SlateBlue;
+}
