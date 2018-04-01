@@ -54,7 +54,7 @@ SnakeGame.prototype.update = function()
     this.player.len++;
     this.foodPos.x = Math.floor(Math.random()*this.gridWdt);
     this.foodPos.y = Math.floor(Math.random()*this.gridHgt);
-    scoreChange = 10;
+    scoreChange = 100;
   }
   else
   {

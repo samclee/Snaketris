@@ -61,7 +61,7 @@ TetrisGame.prototype.newSeq = function()
     seq[j] = seq[i];
     seq[i] = t;
   } // bottom-up Fisher-Yates
-  console.log(seq);
+
   this.sequence = seq;
 } // newSeq()
 
@@ -76,6 +76,7 @@ TetrisGame.prototype.update = function()
   } // piece can fall
   else
   {
+    // stamp block into inert grid
     for(var y=0; y<4; y++)
     {
       for(var x=0; x<4; x++)
@@ -84,15 +85,54 @@ TetrisGame.prototype.update = function()
         if(block !== ' ')
         {
           this.inert[this.pieceY + y][this.pieceX + x] = block; 
-        } // stamp block into inert grid
+        }
+      }
+    }
+
+    // scan top (0) to bottom (gridHgt) for filled rows
+    for(var y=0; y<this.gridHgt; y++)
+    {
+      if(this.isRowFilled(y))
+      {
+        this.shiftBoardDownFrom(y);
+        scoreChange += 10;
       }
     }
 
     this.newPiece();
-  }
+    if(!this.canPieceMove(this.pieceX, this.pieceY, this.pieceRot))
+      scoreChange = -1;
+  } // piece hits ground
 
   return scoreChange;
 } // update()
+
+TetrisGame.prototype.isRowFilled = function(row)
+{
+  for(var x=0; x<this.gridWdt; x++)
+  {
+    if(this.inert[row][x] === ' ')
+      return false;
+  }
+  return true;
+} // isRowFilled()
+
+TetrisGame.prototype.shiftBoardDownFrom = function(row)
+{
+  // scans from bottom (row) to 2nd-to-top row (1)
+  for(var y=row; y>1; y--)
+  {
+    for(var x=0; x<this.gridWdt; x++)
+    {
+      this.inert[y][x] = this.inert[y-1][x];
+    } // row y-1 is copied down onto row y
+  }
+
+  for(var x=0; x<this.gridWdt; x++)
+  {
+    this.inert[0][x] = ' ';
+  } // when top row (0) is copied onto row 1, it should not be replaced
+} // shiftBoardDownFrom()
 
 TetrisGame.prototype.canPieceMove = function(testX, testY, testRot)
 {
@@ -135,11 +175,11 @@ TetrisGame.prototype.draw = function(ctx)
     for(var x=0; x<4; x++)
     {
       let block = pieceStructures[this.pieceType][this.pieceRot][y][x];
-      if(block === ' ')
+      if(block !== ' ')
       {
-        block = 'b'; 
+        this.drawBlock(block, x + this.pieceX, y + this.pieceY);
       }
-      this.drawBlock(block, x + this.pieceX, y + this.pieceY);
+      
     }
   }
 } // draw()
