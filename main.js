@@ -29,6 +29,7 @@ function init()
 function reset()
 {
   score = 0;
+  ctx.globalAlpha = 1;
   sg.reset();
   tg.reset();
   state = "PLAYING";
@@ -67,9 +68,6 @@ function draw()
 
   ctx.clearRect(0, 0, canv.width, canv.height);
 
-  if(state === "LOSS")
-    ctx.globalAlpha = 0.5;
-
   // draw SnakeGame
   ctx.save();
   ctx.translate(sgOffset.x, sgOffset.y);
@@ -83,15 +81,25 @@ function draw()
   ctx.restore();
 
   // draw Score
-  ctx.globalAlpha = 1;
   ctx.fillStyle = "black";
   ctx.fillText("Score: " + score, canv.width / 2, 50);
+
+  if(state === "LOSS")
+  {  
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "black";
+    ctx.fillRect(240 - 470/2, 210, 470, 60);
+
+    ctx.fillStyle = "white";
+    ctx.fillText("Press Space to Play Again", canv.width / 2, 250);
+    ctx.globalAlpha = 0.5;
+  }
 } // draw()
 
 function keyPush(evt)
 {
   evt.preventDefault();
-  if(state === "LOSS")
+  if(state === "LOSS" && evt.key === " ")
   {
     reset();
   }
