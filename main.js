@@ -10,6 +10,8 @@ let state = "PLAYING";
 let sg = null;
 let tg = null;
 
+let bgSong = null;
+
 function init()
 {
   canv = document.getElementById("game");
@@ -23,7 +25,11 @@ function init()
   document.addEventListener("keydown", keyPush);
   
   gameSignal = setInterval(update, 1000/5);
-  
+
+
+  bgSong = new Audio("./assets/Square_up!.mp3");
+  bgSong.loop = true;
+  bgSong.play();
 } // init()
 
 function reset()

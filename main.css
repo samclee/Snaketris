@@ -2,6 +2,11 @@ body {
   font-family: "Lucida Console";
 }
 
+a:visited {
+  text-decoration: none;
+  color: red;
+}
+
 #top {
   font-size: 6em;
   width: 100%;
