@@ -1,2 +1,2 @@
-# Snaketris [(link)](https://samclee.itch.io/snaketris(https://samchristopherlee.com/Snaketris)
+# Snaketris [(link)](https://samclee.itch.io/snaketris)
 It's Snake. And also Tetris.
