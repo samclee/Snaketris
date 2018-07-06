@@ -1,2 +1,2 @@
-# Snaketris [(ling)](samchristopherlee.com/Snaketris)
+# Snaketris [(link)](samchristopherlee.com/Snaketris)
 It's Snake. And also Tetris.
