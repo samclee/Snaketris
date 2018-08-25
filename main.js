@@ -24,7 +24,7 @@ function init()
 
   document.addEventListener("keydown", keyPush);
   
-  gameSignal = setInterval(update, 1000/5);
+  gameSignal = setInterval(update, 1000/2);
 
 
   bgSong = new Audio("./assets/Square_up!.mp3");
